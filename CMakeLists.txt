@@ -19,6 +19,10 @@ set(PROJECT_SOURCES
         mainwindow.ui
 )
 
+if(WIN32)
+    set(PROJECT_SOURCES ${PROJECT_SOURCES} app.rc)
+endif()
+
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(Awake-Buddy
         MANUAL_FINALIZATION

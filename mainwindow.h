@@ -22,6 +22,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    QIcon buildCoffeeIcon(double steamOffset);
+    bool exportIcon(const QString &path);
 
 protected:
     void closeEvent(QCloseEvent *event) override;
@@ -37,7 +39,6 @@ private:
     void setupTrayIcon();
     void applyStyles();
     void setAwakeState(bool awake);
-    QIcon buildCoffeeIcon(double steamOffset);
     void updateAnimatedIcon();
 
     Ui::MainWindow *ui;

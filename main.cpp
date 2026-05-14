@@ -3,12 +3,24 @@
 #include <QApplication>
 #include <QLocale>
 #include <QTranslator>
+#include <QCommandLineParser>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     a.setApplicationName("Awake Buddy");
     a.setQuitOnLastWindowClosed(false);
+
+    // Handle --export-icon flag
+    QCommandLineParser parser;
+    QCommandLineOption exportIconOpt("export-icon", "Export app icon to .ico file", "path");
+    parser.addOption(exportIconOpt);
+    parser.parse(a.arguments());
+
+    if (parser.isSet(exportIconOpt)) {
+        MainWindow w;
+        return w.exportIcon(parser.value(exportIconOpt)) ? 0 : 1;
+    }
 
     QTranslator translator;
     const QStringList uiLanguages = QLocale::system().uiLanguages();

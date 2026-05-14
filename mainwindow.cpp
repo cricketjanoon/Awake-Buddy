@@ -406,3 +406,10 @@ void MainWindow::updateAnimatedIcon()
     m_iconFrame = (m_iconFrame + 1) % m_iconFrames.size();
     m_trayIcon->setIcon(m_iconFrames[m_iconFrame]);
 }
+
+bool MainWindow::exportIcon(const QString &path)
+{
+    QIcon icon = buildCoffeeIcon(0);
+    QPixmap pix = icon.pixmap(256, 256);
+    return pix.save(path);
+}
